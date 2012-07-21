@@ -31,7 +31,7 @@ var App = function(){
 
     init: function() {
 
-      if (!element_supports_attribute('input','placeholder')) {
+      if (element_supports_attribute('input','placeholder')) {
         App.add_focus_events();
         App.add_some_pie();
       }
@@ -76,8 +76,8 @@ var App = function(){
           }
       });
 
-      $("#pie").bind("plothover", pieHover());
-      $("#pie").bind("plotclick", pieClick());
+      $("#pie").bind("plothover", pieHover);
+      $("#pie").bind("plotclick", pieClick);
 
     }
 
