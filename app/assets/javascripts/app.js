@@ -33,8 +33,8 @@ var App = function(){
 
       if (element_supports_attribute('input','placeholder')) {
         App.add_focus_events();
-        App.add_some_pie();
       }
+      App.add_some_pie();
 
     },
 
@@ -60,7 +60,7 @@ var App = function(){
       var series = Math.floor(Math.random()*10)+1;
       for( var i = 0; i<series; i++)
       {
-        data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
+        data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random() * 100)+1 }
       }
       
       // DEFAULT
@@ -79,9 +79,25 @@ var App = function(){
       $("#pie").bind("plothover", pieHover);
       $("#pie").bind("plotclick", pieClick);
 
+    },
+  
+    // Load and set the chart data to our ajax method
+    load_chart_data: function(tag) {
+	  $.ajax({
+	    url: "/path_to_chart_data",    
+	      data: {
+	       tag: tag
+	      },
+	      success: function(data) {
+	        chart_data = $.parseJSON(data);
+	        $.plot($("#pie"), chart_data);
+	      },
+	      error: function(data) {
+	        alert("Error loading chart data");
+	      }
+	  })
     }
-
-  };
+  }
 }();
 
 $(document).ready(function($){
