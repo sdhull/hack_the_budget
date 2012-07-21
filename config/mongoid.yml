@@ -79,9 +79,9 @@ production:
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - ds035557.mongolab.com:35557/hackoakbudget
-      username: hackoakbudget
-      password: hackoakbudget2012
+        - <%= ENV['DB_HOST'] %>
+      username: <%= ENV['DB_USERNAME'] %>
+      password: <%= ENV['DB_PASSWORD'] %>
       options:
         # Change whether the session persists in safe mode by default.
         # (default: false)
