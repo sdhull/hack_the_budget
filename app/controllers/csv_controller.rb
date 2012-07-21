@@ -14,15 +14,15 @@ class CsvController < ApplicationController
     end
     CSV.foreach(csv_file, :headers => true) do |row|
       line_item = BudgetLineItem.new(
-        revenue: row['Revenue'],
-        expenditure: row['Expenditure']        
+        revenue: row['Revenue'].to_f,
+        expenditure: row['Expenditure'].to_f       
       )
       line_item.build_department(
-        name: row['Department']
+        name: row['Department'].strip
       )
       line_item.build_cost_center(
-        name: row['Cost Center Name'],
-        code: row['Cost Center Code']
+        name: row['Cost Center Name'].strip,
+        code: row['Cost Center Code'].strip
       )
       line_item.save
     end
