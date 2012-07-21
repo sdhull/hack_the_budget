@@ -46,4 +46,41 @@ var App = function(){
 
 $(document).ready(function($){
 	App.init();
+	
+	var data = [];
+	var series = Math.floor(Math.random()*10)+1;
+	for( var i = 0; i<series; i++)
+	{
+		data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
+	}
+
+	// DEFAULT
+    $.plot($("#pie"), data, 
+	{
+		series: {
+			pie: { 
+				show: true
+			}
+		},
+		grid: {
+			hoverable: true,
+			clickable: true
+	    }
+	});
+    
+    $("#pie").bind("plothover", App.pieHover);
+    $("#pie").bind("plotclick", App.pieClick);
+	
 });
+
+App.pieHover = function(event, pos, obj) 
+{
+	if (!obj)
+       return;
+	percent = parseFloat(obj.series.percent).toFixed(2);
+	$("#hover").html('<span style="font-weight: bold; color: '+obj.series.color+'">'+obj.series.label+' ('+percent+'%)</span>');
+}
+
+App.pieClick = function(event, pos, obj) {
+	alert("click");
+}
