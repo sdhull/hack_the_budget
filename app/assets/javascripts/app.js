@@ -12,18 +12,45 @@ var App = function(){
   }
   
   var pieClick = function(event, pos, obj) {
-    alert("click");
+    //console.log("click");
   }
 
-  /* HTML5 elememt support tester */
-  var element_supports_attribute = function(element,attribute){
-    var test = document.createElement(element);
-    if (attribute in test) {
-      return true;
-    } else {
-      return false;
+  var load_general_fund_pie = function() {
+
+    var data = [];
+    var series = Math.floor(Math.random()*10)+1;
+    for( var i = 0; i<series; i++)
+    {
+      data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random() * 100)+1 }
     }
-  };
+    
+    // DEFAULT
+    $.plot($("#pie"), data, {
+        series: {
+          pie: { 
+            show: true
+          }
+        },
+        grid: {
+          hoverable: true,
+          clickable: true
+        }
+    });
+    /*
+        $.ajax({url: "/path_to_chart_data",
+          data: {
+           tag: tag
+          },
+          success: function(data) {
+            chart_data = $.parseJSON(data);
+            $.plot($("#pie"), chart_data);
+          },
+          error: function(data) {
+            console.log("Error loading chart data");
+          }
+        })
+    */
+  }
 
   /* end private */
 
@@ -31,48 +58,85 @@ var App = function(){
 
     init: function() {
 
-      if (element_supports_attribute('input','placeholder')) {
-        App.add_focus_events();
-      }
       App.add_some_pie();
 
     },
 
-    add_focus_events: function(){
-
-      $('#foo').val(default_topic);
-
-      $('#foo').focus(function(){
-        if($(this).val()===default_topic){
-          $(this).val('');
-        }
-      });
-      $('#foo').blur(function(){
-        if($(this).val()===''){
-          $(this).val(default_topic);
-        }
-      });
-    },
-    
     add_some_pie: function(){
 
-      var data = [];
-      var series = Math.floor(Math.random()*10)+1;
-      for( var i = 0; i<series; i++)
-      {
-        data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random() * 100)+1 }
-      }
+<<<<<<< HEAD
+      load_general_fund_pie();
+      $("#pie").bind("plothover", pieHover);
+      $("#pie").bind("plotclick", pieClick);
+
+=======
+      var data = [
+              {
+    		  "_id": {"$oid": "500b1fe0339a29ca34000001"},
+    		  "cost_center": {
+    		    "_id": {"$oid": "500b209f339a29ca34000002"},
+    		    "code": "1010",
+    		    "created_at": "2012-07-21T21:35:27Z",
+    		    "name": "General Fund: General Purpose",
+    		    "updated_at": "2012-07-21T21:35:27Z"
+    		  },
+    		  "created_at": "2012-07-21T21:32:45Z",
+    		  "department": {
+    		    "_id": {"$oid": "500b20b5339a29ca34000003"},
+    		    "created_at": "2012-07-21T21:35:49Z",
+    		    "name": "Office of Communications and Information Services",
+    		    "updated_at": "2012-07-21T21:35:49Z"
+    		  },
+    		  "expenditure": 7489612,
+    		  "fiscal_period_id": {"$oid": "500b20c4339a29ca34000004"},
+    		  "revenue": 2388740,
+    		  "updated_at": "2012-07-21T21:36:22Z"
+    		},
+    		{"_id": {"$oid": "500b1fe0339a29ca34000001"},
+	  		  "cost_center": {
+	  		    "_id": {"$oid": "500b209f339a29ca34000002"},
+	  		    "code": "1010",
+	  		    "created_at": "2012-07-21T21:35:27Z",
+	  		    "name": "General Fund: General Purpose",
+	  		    "updated_at": "2012-07-21T21:35:27Z"
+	  		  },
+	  		  "created_at": "2012-07-21T21:32:45Z",
+	  		  "department": {
+	  		    "_id": {"$oid": "500b20b5339a29ca34000003"},
+	  		    "created_at": "2012-07-21T21:35:49Z",
+	  		    "name": "Office of Communications and Information Services",
+	  		    "updated_at": "2012-07-21T21:35:49Z"
+	  		  },
+	  		  "expenditure": 235113,
+	  		  "fiscal_period_id": {"$oid": "500b20c4339a29ca34000004"},
+	  		  "revenue": 235666,
+	  		  "updated_at": "2012-07-21T21:36:22Z"
+    		}
+    		];
+      
+      data = App.convert_to_pie_data(data, "department", "expenditure");
       
       // DEFAULT
       $.plot($("#pie"), data, {
           series: {
             pie: { 
-              show: true
+              show: true,
+              label: {
+                  show: true,
+                  radius: 0.60,
+                  formatter: function(label, series){
+                      return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';
+                  },
+                  background: { opacity: 0.8 }
+              },
             }
           },
           grid: {
             hoverable: true,
             clickable: true
+          },
+          legend: {
+        	  show: false
           }
       });
 
@@ -93,11 +157,21 @@ var App = function(){
 	        $.plot($("#pie"), chart_data);
 	      },
 	      error: function(data) {
-	        alert("Error loading chart data");
+	        console.log("Error loading chart data");
 	      }
 	  })
+    },
+    
+    convert_to_pie_data: function(data, name, value) {
+    	var pie_data = [];
+    	for(var i=0;i<data.length; i++) {
+    		pie_data[i] = {label: data[i][name]["name"], data: data[i][value]};
+    	}
+    	return pie_data;
+>>>>>>> Added sample data and hooked it up to chart, convert data for pie chart
     }
   }
+
 }();
 
 $(document).ready(function($){
