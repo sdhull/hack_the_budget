@@ -11,7 +11,6 @@ var App = function(){
   }
   
   var pieClick = function(event, pos, obj) {
-    //console.log("click");
   }
 
   var init_pie_chart = function(data) {
@@ -21,8 +20,8 @@ var App = function(){
             pie: { 
               show: true,
               label: {
-                  show: true,
-                  radius: 0.60,
+                  show: false,
+                  radius: 1,
                   formatter: function(label, series){
                       return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';
                   },
@@ -35,7 +34,7 @@ var App = function(){
             clickable: true
           },
           legend: {
-            show: false
+            show: true
           }
       });
 
@@ -74,7 +73,6 @@ var App = function(){
             $.plot($("#pie"), chart_data);
           },
           error: function(data) {
-            console.log("Error loading chart data");
           }
         })
     */
@@ -106,13 +104,11 @@ var App = function(){
         success: function(data) {
           //chart_data = $.parseJSON(data);
           data = App.convert_to_pie_data(data, "department", "expenditure");
-          console.log(data);
 
           init_pie_chart(data);
           //$.plot($("#pie"), data);
         },
         error: function(data) {
-          console.log("Error loading chart data");
         }
     })
     },
