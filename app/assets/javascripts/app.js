@@ -58,18 +58,16 @@ var App = function(){
 
     init: function() {
 
-      App.add_some_pie();
+      //App.add_some_pie();
 
     },
 
     add_some_pie: function(){
 
-<<<<<<< HEAD
       load_general_fund_pie();
       $("#pie").bind("plothover", pieHover);
       $("#pie").bind("plotclick", pieClick);
 
-=======
       var data = [
               {
     		  "_id": {"$oid": "500b1fe0339a29ca34000001"},
@@ -168,7 +166,7 @@ var App = function(){
     		pie_data[i] = {label: data[i][name]["name"], data: data[i][value]};
     	}
     	return pie_data;
->>>>>>> Added sample data and hooked it up to chart, convert data for pie chart
+      // Added sample data and hooked it up to chart, convert data for pie chart
     }
   }
 
