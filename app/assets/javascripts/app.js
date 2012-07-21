@@ -37,7 +37,7 @@ var App = function(){
         }
     });
     /*
-        $.ajax({url: "/path_to_chart_data",
+        $.ajax({url: "/budget_line_items.json",
           data: {
            tag: tag
           },
