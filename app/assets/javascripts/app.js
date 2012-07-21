@@ -33,9 +33,8 @@ var App = function(){
 
       if (element_supports_attribute('input','placeholder')) {
         App.add_focus_events();
-        App.add_some_pie();
-        App.load_chart_data();
       }
+      App.add_some_pie();
 
     },
 
