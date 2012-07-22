@@ -14,32 +14,35 @@ var App = function(){
   }
 
   var init_pie_chart = function(data) {
-      // DEFAULT
-      $.plot($("#pie"), data, {
-          series: {
-            pie: { 
-              show: true,
-              label: {
-                  show: false,
-                  radius: 1,
-                  formatter: function(label, series){
-                      return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';
-                  },
-                  background: { opacity: 0.8 }
-              },
-            }
+    // DEFAULT
+    $.plot($("#pie"), data, {
+      series: {
+        pie: { 
+          show: true,
+          label: {
+            show: false,
+            radius: 1,
+            formatter: function(label, series){
+              return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';
+            },
+            background: { opacity: 0.8 }
           },
-          grid: {
-            hoverable: true,
-            clickable: true
-          },
-          legend: {
-            show: true
-          }
-      });
+        }
+      },
+      grid: {
+        hoverable: true,
+        clickable: true
+      },
+      legend: {
+        show: true,
+        labelFormatter: function(label, series){
+          return '<div id="series-'+series.series+'">'+label+': $'+series.data[0][1].formatMoney()+'</div>';
+        },
+      }
+    });
 
-      $("#pie").bind("plothover", pieHover);
-      $("#pie").bind("plotclick", pieClick);
+    $("#pie").bind("plothover", pieHover);
+    $("#pie").bind("plotclick", pieClick);
 
   }
 
@@ -54,7 +57,7 @@ var App = function(){
     // DEFAULT
     $.plot($("#pie"), data, {
         series: {
-          pie: { 
+          pie: {
             show: true
           }
         },
