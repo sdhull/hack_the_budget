@@ -12,14 +12,13 @@
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
+    <div class="navbar-inner_">
       <div class="container">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-        </a>
-        <a class="brand" href="/">Hack The Budget</a>
+        <a class="brand" href="/"><%= image_tag "oakbudget_small.jpg", :id => "logo_image"  %></a>
         <div class="nav-collapse">
           <ul class="nav">
             <li><%= link_to 'Home', home_index_path %></li>
