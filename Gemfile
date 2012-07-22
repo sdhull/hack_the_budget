@@ -7,6 +7,7 @@ gem 'rails', '3.2.6'
 
 gem 'mongoid'
 gem 'jquery-rails'
+gem 'newrelic_rpm'
 gem 'awesome_print'
 
 # Gems used only for assets and not required
