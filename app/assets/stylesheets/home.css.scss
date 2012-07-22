@@ -2,10 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#pie { width: 800px; height: 600px; }
+#pie { width: 900px; height: 500px; }
 
 .brand img { width: 250px; }
 .navbar-inner { background: white !important; }
 h1 { margin-top: 20px; }
+body > .container { margin-top: 30px; }
 
 #disqus_thread { margin-top: 20px; }

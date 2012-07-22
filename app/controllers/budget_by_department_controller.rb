@@ -42,6 +42,7 @@ class BudgetByDepartmentController < ApplicationController
 
     RAW_QUERY
 
-    render :json => Mongoid.default_session.send(:current_database).command(:eval => query_string )['retval']['result']
+    # Mongoid.default_session.send(:current_database).command(:eval => query_string )['retval']['result']
+    render :json => Department.all
   end
 end

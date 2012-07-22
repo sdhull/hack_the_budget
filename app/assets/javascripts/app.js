@@ -116,7 +116,7 @@ var App = function(){
     convert_to_pie_data: function(data, name, value) {
       var pie_data = [];
       for(var i=0;i<data.length; i++) {
-        pie_data[i] = {label: data[i]["_id"], data: data[i]["total_expenditure"]};
+        pie_data[i] = {label: data[i]["name"], data: data[i]["total_expenditure"]};
       }
       return pie_data;
       // Added sample data and hooked it up to chart, convert data for pie chart
