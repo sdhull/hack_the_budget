@@ -4,10 +4,11 @@ var App = function(){
 
   var pieHover = function(event, pos, obj) {
     if (!obj) {
+      $("#hover").css({"visibility": "hidden"});
       return;
     }
     percent = parseFloat(obj.series.percent).toFixed(2);
-    $("#hover").html('<span style="font-weight: bold; color: '+obj.series.color+'">'+obj.series.label+' ('+percent+'%)</span>');
+    $("#hover").html('<span>'+obj.series.label+' ('+percent+'%)</span>').css({"background-color": obj.series.color, "visibility": "visible"});
   }
   
   var pieClick = function(event, pos, obj) {

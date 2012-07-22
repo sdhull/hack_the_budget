@@ -3,6 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #pie { width: 900px; height: 500px; }
+#hover {
+  position: relative;
+  top: 5px;
+  font-weight: bold;
+  display: inline;
+  padding: 5px;
+  visibility: hidden;
+  span {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}
 
 .brand img { width: 250px; }
 .navbar-inner { background: white !important; }
