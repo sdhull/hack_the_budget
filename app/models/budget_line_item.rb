@@ -1,8 +1,8 @@
 class BudgetLineItem
   include Mongoid::Document
   include Mongoid::Timestamps
-  field :revenue, type: Float
-  field :expenditure, type: Float
+  field :revenue, type: Integer, :default => 0
+  field :expenditure, type: Integer, :default => 0
 
   belongs_to :cost_center
   belongs_to :department
