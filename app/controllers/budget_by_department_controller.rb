@@ -3,7 +3,7 @@ class BudgetByDepartmentController < ApplicationController
     query_string = <<-RAW_QUERY
 
     // make sure we're using the right db; this is the same as "use aggdb;" in shell
-    db = db.getSiblingDB("hackoakbudget2");
+    db = db.getSiblingDB("hack_the_budget_development");
 
     // grouping
     var g1 = db.runCommand(
