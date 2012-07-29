@@ -1,4 +1,5 @@
 class BudgetByDepartmentController < ApplicationController
+  respond_to :json
   def index
     query_string = <<-RAW_QUERY
 
@@ -43,6 +44,8 @@ class BudgetByDepartmentController < ApplicationController
     RAW_QUERY
 
     # Mongoid.default_session.send(:current_database).command(:eval => query_string )['retval']['result']
-    render :json => Department.all
+    department_items = Department.all
+    sorted_deparments = department_items.sort { |a,b|  b.total_expenditure <=> a.total_expenditure }
+    respond_with sorted_deparments
   end
 end
